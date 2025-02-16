@@ -15,3 +15,8 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('user', [AuthController::class, 'user'])->name('auth.user');
     Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 });
+
+
+Route::apiResource('settings', App\Http\Controllers\Api\SettingController::class)
+	->middleware('auth:api');
+
