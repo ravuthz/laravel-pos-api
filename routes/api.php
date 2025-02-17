@@ -20,3 +20,5 @@ Route::middleware(['auth:api'])->group(function () {
 Route::apiResource('settings', App\Http\Controllers\Api\SettingController::class)
 	->middleware('auth:api');
 
+Route::apiResource('setting-types', App\Http\Controllers\Api\SettingTypeController::class)
+    ->middleware('auth:api');
