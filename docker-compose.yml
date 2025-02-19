@@ -1,0 +1,24 @@
+services:
+    # local:
+    #     image: ravuthz/laravel-php:8.3-supervisor
+    #     ports:
+    #         - "9000:9000"
+    #     volumes:
+    #         - .:/var/www/html
+    #     entrypoint:
+    #         ["/bin/sh", "-c", "php artisan serve --host=0.0.0.0 --port=9000"]
+
+    live:
+        build: .
+        ports:
+            - "29:22"
+            - "90:80"
+            - "9090:8080"
+            # - "9000:9000"
+            - "9001:9001"
+        # labels:
+        #     - dev.orbstack.http-port=90
+        #     - dev.orbstack.add-ca-certificates=false
+        # - dev.orbstack.https-port=90
+        # volumes:
+        #     - .:/var/www/html

@@ -1,0 +1,38 @@
+# Exported from Render on 2025-02-19T10:01:51Z
+services:
+  - type: web
+    name: laravel-pos-api
+    runtime: docker
+    repo: https://github.com/ravuthz/laravel-pos-api
+    branch: docker
+    plan: free
+    envVars:
+      - key: PORT
+        value: 80
+      - key: APP_URL
+        value: https://laravel-pos-api.onrender.com
+      - key: APP_ENV
+        value: production
+      - key: APP_KEY
+        generateValue: true
+      - key: APP_TIMEZONE
+        value: Asia/Phnom_Penh
+      - key: APP_NAME
+        value: POS API
+      - key: DB_CONNECTION
+        value: sqlite
+      - key: LOG_CHANNEL
+        value: syslog
+      - key: LOG_STACK
+        value: daily
+      - key: LOG_LEVEL
+        value: DEBUG
+      - key: SESSION_DRIVER
+        value: file
+      - key: CACHE_STORE
+        value: file
+    region: singapore
+    healthCheckPath: /up
+    dockerContext: .
+    dockerfilePath: ./Dockerfile
+version: "1"
