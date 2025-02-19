@@ -1,0 +1,17 @@
+services:
+    local:
+        image: ravuthz/laravel-php:8.3-supervisor
+        ports:
+            - "9000:9000"
+        volumes:
+            - .:/var/www/html
+        entrypoint:
+            ["/bin/sh", "-c", "php artisan serve --host=0.0.0.0 --port=9000"]
+
+
+    live:
+        build: .
+        ports:
+            - "9000:9000"
+        volumes:
+            - .:/var/www/html
