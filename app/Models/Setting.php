@@ -14,4 +14,29 @@ class Setting extends Model
     protected $casts = [
         'options' => 'array'
     ];
+
+    public static function setItem($item)
+    {
+        if (empty($item['value'])) {
+            $item['value'] = $item['code'];
+        }
+        if (empty($item['description'])) {
+            $item['description'] = $item['name'];
+        }
+        return static::updateOrCreate([
+            'code' => $item['code'],
+        ], $item);
+    }
+
+    public function setItems($items)
+    {
+        $result = collect();
+
+        foreach ($items as $item) {
+            $item['parent_code'] = $this->code;
+            $result[] = static::setItem($item);
+        }
+
+        return $result;
+    }
 }

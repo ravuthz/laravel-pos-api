@@ -20,9 +20,10 @@ class SettingControllerTest extends TestCrud
         Passport::actingAs(User::factory()->create());
 
         Setting::create([
+            'code' => $this->faker->unique()->word(),
             'name' => $this->faker->name(),
-            'desc' => $this->faker->sentence(),
-            'value' => $this->faker->randomNumber(),
+            'value' => $this->faker->text(),
+            'description' => $this->faker->sentence(),
             'options' => [
                 [
                     'key' => 'S',
@@ -47,8 +48,10 @@ class SettingControllerTest extends TestCrud
 
         return [
             'id' => $id,
+            'code' => $this->faker->unique()->word(),
             'name' => $this->faker->name(),
-            'desc' => $this->faker->sentence(),
+            'value' => $this->faker->text(),
+            'description' => $this->faker->sentence(),
         ];
     }
 }

@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('type_id')->nullable();
+            $table->string('parent_code')->nullable();
+            $table->string('code')->nullable();
             $table->string('name');
-            $table->string('desc');
             $table->string('value')->nullable();
-            $table->jsonb('options')->nullable()->default('[]');
+            $table->string('description')->nullable();
+            $table->jsonb('options')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreignId('created_by')->nullable();
