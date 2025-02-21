@@ -12,7 +12,7 @@ Route::post('login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('register', [AuthController::class, 'register'])->name('auth.register');
 
 Route::middleware(['auth:api'])->group(function () {
-    Route::get('user', [AuthController::class, 'user'])->name('auth.user');
+    Route::get('me', [AuthController::class, 'me'])->name('auth.user');
     Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 });
 
