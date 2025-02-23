@@ -15,7 +15,7 @@ class Setting extends Model
         'options' => 'array'
     ];
 
-    public static function setItem($item)
+    public static function set($item)
     {
         if (empty($item['value'])) {
             $item['value'] = $item['code'];
