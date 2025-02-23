@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\SettingController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,8 +19,8 @@ Route::middleware(['auth:api'])->group(function () {
 });
 
 
-Route::apiResource('settings', App\Http\Controllers\Api\SettingController::class)
+Route::apiResource('settings', SettingController::class)
 	->middleware('auth:api');
 
-Route::apiResource('setting-types', App\Http\Controllers\Api\SettingTypeController::class)
-    ->middleware('auth:api');
+Route::apiResource('users', UserController::class)
+	->middleware('auth:api');
