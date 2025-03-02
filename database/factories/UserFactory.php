@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -34,7 +35,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
             'phone' => fake()->regexify('0[1,6-9]{1}[0-9]{1}-[0-9]{3}-[0-9]{3,4}'),
-            'avatar' => fake()->imageUrl(640, 480, 'human', true, 'Faker'),
+            'avatar' => UploadedFile::fake()->image('avatar.jpg'),
             'salary' => fake()->randomFloat(),
             'address' => fake()->address(),
             'shop_name' => fake()->name,

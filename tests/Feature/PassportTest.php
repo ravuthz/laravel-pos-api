@@ -27,7 +27,9 @@ class PassportTest extends TestCase
 
     public function test_can_access_protected_route_with_token()
     {
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            'avatar' => null
+        ]);
         Passport::actingAs($user);
 
         $response = $this->getJson('/api/user');

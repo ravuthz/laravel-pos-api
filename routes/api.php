@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\SettingController;
+use App\Http\Controllers\Api\StoreController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,4 +24,7 @@ Route::apiResource('settings', SettingController::class)
 	->middleware('auth:api');
 
 Route::apiResource('users', UserController::class)
+	->middleware('auth:api');
+
+Route::apiResource('stores', StoreController::class)
 	->middleware('auth:api');

@@ -34,7 +34,7 @@ class Setting extends Model
 
         foreach ($items as $item) {
             $item['parent_code'] = $this->code;
-            $result[] = static::setItem($item);
+            $result[] = static::set($item);
         }
 
         return $result;

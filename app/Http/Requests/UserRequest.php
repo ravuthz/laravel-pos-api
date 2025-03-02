@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'nullable|string|min:8|confirmed',
             'phone' => 'nullable|string',
-            'avatar' => 'nullable|string',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'salary' => 'nullable|numeric|min:0',
             'address' => 'nullable|string',
             'username' => 'nullable|string',
