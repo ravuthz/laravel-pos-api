@@ -7,6 +7,7 @@ use App\Models\User;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Laravel\Passport\ClientRepository;
 
 class DatabaseSeeder extends Seeder
 {
@@ -30,6 +31,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         if (config('app.env') === 'local') {
+            $url = config('app.url');
+            $service = new ClientRepository();
+            $service->createPersonalAccessClient(null, 'Personal Token', $url);
+            $service->createPasswordGrantClient(null, 'Password Token', $url);
+
             $this->call(SettingSeeder::class);
 
             Store::factory(10)->create();
