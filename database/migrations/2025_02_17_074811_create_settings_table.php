@@ -14,10 +14,14 @@ return new class extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->string('parent_code')->nullable();
+            $table->string('slug')->unique();
+            $table->string('name')->unique();
             $table->string('code')->nullable();
-            $table->string('name');
             $table->string('value')->nullable();
-            $table->string('description')->nullable();
+            $table->jsonb('meta')->nullable()->comment('page meta { title, keywords, description }');
+            $table->tinyInteger('status')->nullable()->default(1);
+            $table->string('excerpt')->nullable()->comment('short description');
+            $table->string('description')->nullable('full description');
             $table->jsonb('options')->nullable();
             $table->timestamps();
             $table->softDeletes();

@@ -27,10 +27,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Blueprint::macro('addAuditColumns', function ($excludes = []) {
-            if (!in_array('status', $excludes)) {
-                $this->tinyInteger('status')->nullable()->default(1);
-            }
-
             if (!in_array('created_at', $excludes)) {
                 $this->timestamp('created_at');
             }
@@ -60,10 +56,6 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Blueprint::macro('dropAuditColumns', function ($excludes = []) {
-            if (!in_array('status', $excludes)) {
-                $this->dropColumn('status');
-            }
-
             if (!in_array('created_at', $excludes)) {
                 $this->dropColumn('created_at');
             }
