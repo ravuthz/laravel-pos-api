@@ -20,8 +20,8 @@ class SettingFactory extends Factory
 
         return [
             'name' => $name,
-            'code' => fake()->regexify('0[0-9]{5}'),
-            'value' => strtoupper($name),
+            'code' => fake()->unique()->regexify('0[0-9]{5}'), // Ensures a unique 6-digit numeric code starting with 0
+            'value' => strtoupper($name), // Converts the name to uppercase for consistency
         ];
     }
 }

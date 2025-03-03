@@ -15,4 +15,8 @@ class CategoryController extends BaseCrudController
     protected $collection = CategoryCollection::class;
     protected $storeRequest = CategoryRequest::class;
     protected $updateRequest = CategoryRequest::class;
+
+    protected $uploadFilePath = [
+        'thumbnail' => 'public/categories'
+    ];
 }

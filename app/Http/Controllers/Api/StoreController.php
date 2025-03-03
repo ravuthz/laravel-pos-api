@@ -15,4 +15,8 @@ class StoreController extends BaseCrudController
     protected $collection = StoreCollection::class;
     protected $storeRequest = StoreRequest::class;
     protected $updateRequest = StoreRequest::class;
+
+    protected $uploadFilePath = [
+        'thumbnail' => 'public/stores'
+    ];
 }

@@ -32,3 +32,6 @@ Route::apiResource('stores', StoreController::class)
 
 Route::apiResource('categories', CategoryController::class)
 	->middleware('auth:api');
+
+Route::apiResource('products', App\Http\Controllers\Api\ProductController::class)
+	->middleware('auth:api');

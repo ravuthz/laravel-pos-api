@@ -19,16 +19,13 @@ class StoreFactory extends Factory
     public function definition(): array
     {
         return [
-            'parent_id' => fake()->randomDigit(),
-            'name' => fake()->name(),
-            'status' => fake()->randomDigit(),
-//            'thumbnail' => fake()->imageUrl(640, 480, 'shop', true, 'Faker'),
-//            'thumbnail' => fake()->image(storage_path('app/stores'),640,480, null, true),
-//            'thumbnail' => fake()->image(storage_path('app/public/images'),640,480, 'shop', false),
-            'thumbnail' => UploadedFile::fake()->image('thumbnail.jpg'),
-            'phone' => fake()->regexify('0[1,6-9]{1}[0-9]{1}-[0-9]{3}-[0-9]{3,4}'),
-            'address' => fake()->address(),
-            'description' => fake()->text(),
+            'parent_id' => fake()->optional()->numberBetween(1, 100), // Allows null values for top-level stores
+            'name' => fake()->company(), // More appropriate for store names
+            'status' => fake()->randomElement([0, 1]), // Ensures status is either active (1) or inactive (0)
+            'thumbnail' => UploadedFile::fake()->image('thumbnail.jpg', 640, 480), // Generates a fake image with given dimensions
+            'phone' => fake()->regexify('0[1,6-9][0-9]-[0-9]{3}-[0-9]{3,4}'), // Valid phone number format
+            'address' => fake()->streetAddress(), // More realistic address format
+            'description' => fake()->paragraph(3), // Structured store description
         ];
     }
 }
