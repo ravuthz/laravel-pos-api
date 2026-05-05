@@ -72,7 +72,6 @@ abstract class BaseCrudController extends Controller
         return $this->responseJson($json, $status, $message);
     }
 
-
     /**
      * Display a listing of the resource.
      */
@@ -91,6 +90,13 @@ abstract class BaseCrudController extends Controller
         return $this->parseResponse($data, 200, 'Fetched One');
     }
 
+    public function saveFromRequest($model, $request)
+    {
+        $input = $this->parseRequest($request);
+        $model->fill($input)->save();
+        return $model;
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -98,8 +104,7 @@ abstract class BaseCrudController extends Controller
     {
         $model = $this->getModel();
         $body = $this->storeRequest ? app($this->storeRequest) : $request;
-        $input = $this->parseRequest($body);
-        $model->fill($input)->save();
+        $model = $this->saveFromRequest($model, $body);
         return $this->parseResponse($model, 200, 'Created');
     }
 
@@ -110,8 +115,7 @@ abstract class BaseCrudController extends Controller
     {
         $model = $this->getModel($id);
         $body = $this->updateRequest ? app($this->updateRequest) : $request;
-        $input = $this->parseRequest($body);
-        $model->fill($input)->save();
+        $model = $this->saveFromRequest($model, $body);
         return $this->parseResponse($model, 200, 'Updated');
     }
 

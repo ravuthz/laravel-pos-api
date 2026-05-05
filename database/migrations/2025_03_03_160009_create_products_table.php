@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -19,10 +18,11 @@ return new class extends Migration
             $table->string('thumbnail')->nullable();
             $table->jsonb('meta')->nullable()->comment('page meta { title, keywords, description }');
             $table->tinyInteger('status')->nullable()->default(1);
-            $table->string('excerpt')->nullable()->comment('short description');
-            $table->string('description')->nullable('full description');
+            $table->text('excerpt')->nullable()->comment('short description');
+            $table->text('description')->nullable('full description');
             $table->string('sku')->nullable();
             $table->string('barcode')->nullable();
+            $table->decimal('price', 14, 2)->nullable();
             $table->unsignedBigInteger('tax_id')->nullable();
             $table->unsignedBigInteger('type_id')->nullable();
             $table->addAuditColumns();

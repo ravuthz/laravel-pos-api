@@ -32,4 +32,23 @@ class ProductControllerTest extends TestCase
             ...$payload
         ];
     }
+
+    public function test_store()
+    {
+        $payload = Product::factory()->make()->toArray();
+        $payload['videos'] = [
+            [
+                'type' => 'video',
+                'name' => 'video1',
+                'path' => 'video1.mp4'
+            ]
+        ];
+        $payload['thumbnail'] = null;
+
+        $res = $this->postJson($this->requestRoute(), $payload);
+
+        dd($res->json());
+
+        $this->assertStatusWithClass($res, 200);
+    }
 }

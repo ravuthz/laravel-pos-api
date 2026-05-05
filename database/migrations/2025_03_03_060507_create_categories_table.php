@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('thumbnail')->nullable();
             $table->jsonb('meta')->nullable()->comment('page meta { title, keywords, description }');
             $table->tinyInteger('status')->nullable()->default(1);
-            $table->string('excerpt')->nullable()->comment('short description');
-            $table->string('description')->nullable('full description');
+            $table->text('excerpt')->nullable()->comment('short description');
+            $table->text('description')->nullable('full description');
             $table->string('phone')->nullable();
-            $table->string('address')->nullable();
+            $table->text('address')->nullable();
             $table->addAuditColumns();
         });
     }

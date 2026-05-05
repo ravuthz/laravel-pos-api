@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\SettingController;
 use App\Http\Controllers\Api\StoreController;
 use App\Http\Controllers\Api\UserController;
@@ -20,18 +21,17 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 });
 
-
-Route::apiResource('settings', SettingController::class)
-	->middleware('auth:api');
-
 Route::apiResource('users', UserController::class)
-	->middleware('auth:api');
+    ->middleware('auth:api');
 
-Route::apiResource('stores', StoreController::class)
-	->middleware('auth:api');
+Route::apiResource('settings', SettingController::class);
+//	->middleware('auth:api');
 
-Route::apiResource('categories', CategoryController::class)
-	->middleware('auth:api');
+Route::apiResource('stores', StoreController::class);
+//	->middleware('auth:api');
 
-Route::apiResource('products', App\Http\Controllers\Api\ProductController::class)
-	->middleware('auth:api');
+Route::apiResource('categories', CategoryController::class);
+//	->middleware('auth:api');
+
+Route::apiResource('products', ProductController::class);
+//	->middleware('auth:api');
