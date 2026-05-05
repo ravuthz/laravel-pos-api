@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\HasAudit;
 use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Setting extends Model
 {
-    use HasFactory, HasSlug;
+    use HasFactory, HasSlug, SoftDeletes, HasAudit;
 
     protected $guarded = ['id'];
 
