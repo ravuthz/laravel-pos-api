@@ -34,8 +34,8 @@ class UserFactory extends Factory
             'password' => $password, // Ensure this is properly hashed in seeding
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
-            'phone' => fake()->regexify('0[1,6-9][0-9]-[0-9]{3}-[0-9]{3,4}'), // Improved regex formatting
-            'avatar' => UploadedFile::fake()->image('avatar.jpg', 300, 300), // More realistic avatar dimensions
+            'phone' => fakePhoneNumber(), // Improved regex formatting
+            'avatar' => fakeFile('avatar.jpg', 300, 300), // More realistic avatar dimensions
             'salary' => fake()->randomFloat(2, 3000, 15000), // Defines salary range with 2 decimal places
             'address' => fake()->streetAddress(), // Shorter and more structured address
             'shop_name' => fake()->company(), // More relevant for shop names

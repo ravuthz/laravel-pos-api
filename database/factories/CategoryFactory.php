@@ -21,8 +21,8 @@ class CategoryFactory extends Factory
             'parent_id' => fake()->optional()->numberBetween(1, 100), // Nullable parent category ID
             'name' => fake()->company(), // More suitable for a category name
             'status' => fake()->randomElement([0, 1]), // Ensures status is either active (1) or inactive (0)
-            'thumbnail' => UploadedFile::fake()->image('thumbnail.jpg', 300, 300), // Simulated image with dimensions
-            'phone' => fake()->regexify('0[1,6-9]{1}[0-9]{1}-[0-9]{3}-[0-9]{3,4}'), // Valid phone number pattern
+            'thumbnail' => fakeFile('thumbnail.jpg'), // Simulated image with dimensions
+            'phone' => fakePhoneNumber(), // Valid phone number pattern
             'address' => fake()->streetAddress(), // Generates a shorter, realistic street address
             'excerpt' => fake()->sentence(10), // Short and meaningful excerpt
             'description' => fake()->paragraph(3), // More structured description

@@ -2,11 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Product;
 use App\Models\Store;
 use App\Models\User;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\ClientRepository;
 
 class DatabaseSeeder extends Seeder
@@ -18,17 +20,19 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'User',
-            'email' => 'user@gmail.com',
-            'password' => '123123',
-        ]);
+        $user = User::updateOrCreate(
+            ['email' => 'user@gmail.com'],
+            [
+                'name' => 'User',
+                'password' => '123123',
+            ]);
 
-        User::factory()->create([
-            'name' => 'Adminz',
-            'email' => 'adminz@gmail.com',
-            'password' => '123123',
-        ]);
+        $admin = User::updateOrCreate(
+            ['email' => 'adminz@gmail.com'],
+            [
+                'name' => 'Adminz',
+                'password' => '123123',
+            ]);
 
         if (config('app.env') === 'local') {
             $url = config('app.url');
@@ -36,9 +40,16 @@ class DatabaseSeeder extends Seeder
             $service->createPersonalAccessClient(null, 'Personal Token', $url);
             $service->createPasswordGrantClient(null, 'Password Token', $url);
 
-            $this->call(SettingSeeder::class);
+            Auth::loginUsingId($admin->id);
 
             Store::factory(10)->create();
+
+            $this->call(SettingSeeder::class);
+            $this->call(CategorySeeder::class);
+            $this->call(ProductSeeder::class);
+
+            Auth::loginUsingId($user->id);
+            Product::factory(50)->create();
         }
     }
 }
